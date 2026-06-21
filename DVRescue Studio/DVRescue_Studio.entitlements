@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+		Distributed OUTSIDE the Mac App Store as a notarized DMG.
+		App Store sandboxing is intentionally NOT enabled — it would block
+		subprocess execution (ffmpeg-dl, dvrescue), arbitrary folder writes,
+		and Homebrew, all of which are core to this app.
+
+		Notarize with: xcrun notarytool submit DVRescueStudio.dmg ...
+	-->
+
+	<!-- Hardened Runtime is required for notarization -->
+	<key>com.apple.security.cs.allow-jit</key>
+	<false/>
+	<key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+	<false/>
+	<key>com.apple.security.cs.disable-library-validation</key>
+	<false/>
+
+	<!-- Allow launching arbitrary executables (ffmpeg-dl, brew, tee, dvrescue) -->
+	<key>com.apple.security.cs.allow-dyld-environment-variables</key>
+	<false/>
+</dict>
+</plist>
